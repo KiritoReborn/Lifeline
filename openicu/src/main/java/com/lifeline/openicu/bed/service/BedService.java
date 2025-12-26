@@ -5,6 +5,7 @@ import com.lifeline.openicu.bed.entity.BedType;
 import com.lifeline.openicu.bed.entity.BedStatus;
 import com.lifeline.openicu.bed.exception.BedNotFoundException;
 import com.lifeline.openicu.bed.repository.BedRepository;
+import com.lifeline.openicu.exception.HospitalNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,11 @@ public class BedService {
     }
     
     public Bed createBed(Long hospitalId, String bedNumber, BedType bedType) {
+        // Validate hospital exists
+        if (!bedRepository.existsHospitalById(hospitalId)) {
+            throw new HospitalNotFoundException(hospitalId);
+        }
+        
         Bed bed = new Bed(bedNumber, hospitalId, bedType, BedStatus.AVAILABLE);
         return bedRepository.save(bed);
     }
@@ -32,10 +38,20 @@ public class BedService {
     }
     
     public List<Bed> getAvailableBeds(Long hospitalId, BedType bedType) {
+        // Validate hospital exists
+        if (!bedRepository.existsHospitalById(hospitalId)) {
+            throw new HospitalNotFoundException(hospitalId);
+        }
+        
         return bedRepository.findByHospitalIdAndBedTypeAndBedStatus(hospitalId, bedType, BedStatus.AVAILABLE);
     }
     
     public int getAvailableBedCount(Long hospitalId, BedType bedType) {
+        // Validate hospital exists
+        if (!bedRepository.existsHospitalById(hospitalId)) {
+            throw new HospitalNotFoundException(hospitalId);
+        }
+        
         return bedRepository.countByHospitalIdAndBedTypeAndBedStatus(hospitalId, bedType, BedStatus.AVAILABLE);
     }
 }

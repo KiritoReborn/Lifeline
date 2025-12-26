@@ -60,11 +60,6 @@ public class AmbulanceRoutingService {
         List<HospitalCandidate> candidates = new ArrayList<>();
 
         for (Hospital hospital : hospitals) {
-            // Skip hospitals without coordinates
-            if (hospital.getLatitude() == null || hospital.getLongitude() == null) {
-                continue;
-            }
-
             // Find available beds of the requested type at this hospital
             List<Bed> availableBeds = bedRepository.findByHospitalIdAndBedTypeAndBedStatus(
                     hospital.getId(), requestedBedType, BedStatus.AVAILABLE);
@@ -84,10 +79,18 @@ public class AmbulanceRoutingService {
                 continue;
             }
 
-            // Calculate distance using Haversine formula
-            double distance = calculateDistance(
-                    request.getLatitude(), request.getLongitude(),
-                    hospital.getLatitude(), hospital.getLongitude());
+            // Calculate distance - use fallback for hospitals without coordinates
+            double distance;
+            if (hospital.getLatitude() != null && hospital.getLongitude() != null) {
+                // Normal distance calculation using Haversine formula
+                distance = calculateDistance(
+                        request.getLatitude(), request.getLongitude(),
+                        hospital.getLatitude(), hospital.getLongitude());
+            } else {
+                // Fallback: assign high distance for hospitals without coordinates
+                // This ensures they're considered but ranked lower than hospitals with coordinates
+                distance = 9999.0; // High distance to prioritize hospitals with coordinates
+            }
 
             candidates.add(new HospitalCandidate(hospital, trulyAvailableBeds, distance));
         }
