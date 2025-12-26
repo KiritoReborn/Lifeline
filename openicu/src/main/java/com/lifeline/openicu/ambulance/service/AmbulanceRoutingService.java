@@ -10,6 +10,7 @@ import com.lifeline.openicu.bed.entity.BedStatus;
 import com.lifeline.openicu.bed.entity.BedType;
 import com.lifeline.openicu.bed.repository.BedRepository;
 import com.lifeline.openicu.entity.Hospital;
+import com.lifeline.openicu.realtime.ambulance.AmbulanceRealtimeService;
 import com.lifeline.openicu.repository.HospitalRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,18 +27,22 @@ public class AmbulanceRoutingService {
     private final HospitalRepository hospitalRepository;
     private final BedRepository bedRepository;
     private final BedReservationRepository bedReservationRepository;
+    private final AmbulanceRealtimeService realtimeService;
 
     public AmbulanceRoutingService(HospitalRepository hospitalRepository,
             BedRepository bedRepository,
-            BedReservationRepository bedReservationRepository) {
+            BedReservationRepository bedReservationRepository,
+            AmbulanceRealtimeService realtimeService) {
         this.hospitalRepository = hospitalRepository;
         this.bedRepository = bedRepository;
         this.bedReservationRepository = bedReservationRepository;
+        this.realtimeService = realtimeService;
     }
 
     /**
      * Find the nearest hospital with an available bed matching the required type.
      * Creates a 15-minute reservation for the bed.
+     * Emits WebSocket events for real-time dashboard updates.
      */
     @Transactional
     public HospitalMatchDTO findNearestHospital(AmbulanceRequestDTO request) {
@@ -113,19 +118,26 @@ public class AmbulanceRoutingService {
                 request.getAmbulanceId());
         bedReservationRepository.save(reservation);
 
-        // Return the result
-        return new HospitalMatchDTO(
+        // Build result DTO
+        HospitalMatchDTO result = new HospitalMatchDTO(
                 nearest.hospital().getId(),
                 nearest.hospital().getName(),
                 nearest.distance(),
                 nearest.availableBeds().size(),
                 bedToReserve.getId());
+
+        // === PHASE 2: Emit WebSocket events ===
+        realtimeService.emitAmbulanceAssigned(request.getAmbulanceId(), result, requestedBedType.name());
+        realtimeService.emitBedReserved(reservation);
+
+        return result;
     }
 
     /**
      * Lazy expiry: Find all RESERVED reservations that have expired and mark them
      * as EXPIRED.
      * Called at the start of every public service method.
+     * Emits WebSocket events for each expired reservation.
      */
     private void expireStaleReservations() {
         LocalDateTime now = LocalDateTime.now();
@@ -134,6 +146,9 @@ public class AmbulanceRoutingService {
 
         for (BedReservation reservation : expiredReservations) {
             reservation.setStatus(ReservationStatus.EXPIRED);
+
+            // === PHASE 2: Emit expiry event ===
+            realtimeService.emitReservationExpired(reservation);
         }
 
         if (!expiredReservations.isEmpty()) {
