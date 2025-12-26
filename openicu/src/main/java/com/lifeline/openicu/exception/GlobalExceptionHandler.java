@@ -1,5 +1,6 @@
 package com.lifeline.openicu.exception;
 
+import com.lifeline.openicu.bed.exception.BedNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -18,6 +19,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HospitalNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleHospitalNotFoundException(
             HospitalNotFoundException ex, WebRequest request) {
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                "Not Found",
+                ex.getMessage(),
+                request.getDescription(false).replace("uri=", "")
+        );
+        
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BedNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleBedNotFoundException(
+            BedNotFoundException ex, WebRequest request) {
         
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),
