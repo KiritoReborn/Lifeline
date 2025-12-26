@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFELINE OpenICU - WebSocket Test Client</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .panel {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .input-group input {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-connect {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-connect:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-disconnect {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-disconnect:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-request {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-request:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.connecting {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .messages {
+            height: 500px;
+            overflow-y: auto;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.created {
+            border-left-color: #28a745;
+        }
+
+        .message.updated {
+            border-left-color: #ffc107;
+        }
+
+        .message.list {
+            border-left-color: #17a2b8;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .message-type {
+            font-weight: 700;
+            font-size: 0.9em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .message-type.created {
+            background: #28a745;
+        }
+
+        .message-type.updated {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .message-type.list {
+            background: #17a2b8;
+        }
+
+        .message-time {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .message-body {
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        .message-body strong {
+            color: #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .clear-btn {
+            background: #6c757d;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .clear-btn:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 LIFELINE OpenICU</h1>
+            <p>Hospital Live Feed - WebSocket Test Client</p>
+        </div>
+
+        <div class="content">
+            <!-- Control Panel -->
+            <div class="panel">
+                <h2>🎛️ Connection Control</h2>
+                
+                <div id="status" class="status disconnected">
+                    ⚫ Disconnected
+                </div>
+
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="wsUrl">WebSocket URL:</label>
+                        <input type="text" id="wsUrl" value="http://localhost:8080/ws" />
+                    </div>
+
+                    <button id="connectBtn" class="btn-connect" onclick="connect()">
+                        🔌 Connect
+                    </button>
+
+                    <button id="disconnectBtn" class="btn-disconnect" onclick="disconnect()" disabled>
+                        🔌 Disconnect
+                    </button>
+
+                    <button id="requestListBtn" class="btn-request" onclick="requestHospitalList()" disabled>
+                        📋 Request Hospital List
+                    </button>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalMessages">0</div>
+                        <div class="stat-label">Total Messages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="createdCount">0</div>
+                        <div class="stat-label">Created</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="updatedCount">0</div>
+                        <div class="stat-label">Updated</div>
+                    </div>
+                </div>
+
+                <button class="clear-btn" onclick="clearMessages()">
+                    🗑️ Clear Messages
+                </button>
+            </div>
+
+            <!-- Messages Panel -->
+            <div class="panel">
+                <h2>📨 Live Messages</h2>
+                <div id="messages" class="messages">
+                    <p style="color: #999; text-align: center; margin-top: 50px;">
+                        No messages yet. Connect and subscribe to start receiving updates.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stompClient = null;
+        let messageCount = 0;
+        let createdCount = 0;
+        let updatedCount = 0;
+
+        function setStatus(status, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${status}`;
+            statusEl.innerHTML = message;
+        }
+
+        function updateStats() {
+            document.getElementById('totalMessages').textContent = messageCount;
+            document.getElementById('createdCount').textContent = createdCount;
+            document.getElementById('updatedCount').textContent = updatedCount;
+        }
+
+        function connect() {
+            const wsUrl = document.getElementById('wsUrl').value;
+            
+            setStatus('connecting', '🟡 Connecting...');
+            document.getElementById('connectBtn').disabled = true;
+
+            const socket = new SockJS(wsUrl);
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function(frame) {
+                console.log('Connected: ' + frame);
+                setStatus('connected', '🟢 Connected');
+                
+                document.getElementById('connectBtn').disabled = true;
+                document.getElementById('disconnectBtn').disabled = false;
+                document.getElementById('requestListBtn').disabled = false;
+
+                // Subscribe to hospital updates
+                stompClient.subscribe('/topic/hospitals', function(message) {
+                    const hospitalEvent = JSON.parse(message.body);
+                    displayMessage(hospitalEvent);
+                });
+
+                addSystemMessage('Connected to WebSocket and subscribed to /topic/hospitals');
+            }, function(error) {
+                console.error('Connection error:', error);
+                setStatus('disconnected', '⚫ Connection Failed');
+                document.getElementById('connectBtn').disabled = false;
+                addSystemMessage('Connection failed: ' + error, 'error');
+            });
+        }
+
+        function disconnect() {
+            if (stompClient !== null) {
+                stompClient.disconnect();
+            }
+            setStatus('disconnected', '⚫ Disconnected');
+            document.getElementById('connectBtn').disabled = false;
+            document.getElementById('disconnectBtn').disabled = true;
+            document.getElementById('requestListBtn').disabled = true;
+            addSystemMessage('Disconnected from WebSocket');
+        }
+
+        function requestHospitalList() {
+            if (stompClient && stompClient.connected) {
+                stompClient.send('/app/hospitals/list', {}, '');
+                addSystemMessage('Requested hospital list from server');
+            }
+        }
+
+        function displayMessage(event) {
+            messageCount++;
+            
+            if (event.event === 'HOSPITAL_CREATED') {
+                createdCount++;
+            } else if (event.event === 'HOSPITAL_UPDATED') {
+                updatedCount++;
+            }
+            
+            updateStats();
+
+            const messagesDiv = document.getElementById('messages');
+            
+            // Clear placeholder text
+            if (messageCount === 1) {
+                messagesDiv.innerHTML = '';
+            }
+
+            const messageDiv = document.createElement('div');
+            const eventClass = event.event.toLowerCase().replace('hospital_', '');
+            messageDiv.className = `message ${eventClass}`;
+
+            const now = new Date().toLocaleTimeString();
+
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <span class="message-type ${eventClass}">${event.event}</span>
+                    <span class="message-time">${now}</span>
+                </div>
+                <div class="message-body">
+                    <strong>ID:</strong> ${event.hospitalId}<br>
+                    <strong>Name:</strong> ${event.name}<br>
+                    <strong>Location:</strong> ${event.latitude || 'N/A'}, ${event.longitude || 'N/A'}<br>
+                    <strong>State:</strong> ${event.state || 'N/A'}<br>
+                    <strong>District:</strong> ${event.district || 'N/A'}<br>
+                    <strong>Timestamp:</strong> ${event.timestamp}
+                </div>
+            `;
+
+            messagesDiv.insertBefore(messageDiv, messagesDiv.firstChild);
+
+            // Keep only last 50 messages
+            while (messagesDiv.children.length > 50) {
+                messagesDiv.removeChild(messagesDiv.lastChild);
+            }
+        }
+
+        function addSystemMessage(message, type = 'info') {
+            const messagesDiv = document.getElementById('messages');
+            
+            if (messageCount === 0) {
+                messagesDiv.innerHTML = '';
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.style.borderLeftColor = type === 'error' ? '#dc3545' : '#6c757d';
+
+            const now = new Date().toLocaleTimeString();
+
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <span class="message-type" style="background: ${type === 'error' ? '#dc3545' : '#6c757d'}">
+                        ${type === 'error' ? '❌ ERROR' : 'ℹ️ SYSTEM'}
+                    </span>
+                    <span class="message-time">${now}</span>
+                </div>
+                <div class="message-body">
+                    ${message}
+                </div>
+            `;
+
+            messagesDiv.insertBefore(messageDiv, messagesDiv.firstChild);
+        }
+
+        function clearMessages() {
+            document.getElementById('messages').innerHTML = `
+                <p style="color: #999; text-align: center; margin-top: 50px;">
+                    Messages cleared. Waiting for new updates...
+                </p>
+            `;
+            messageCount = 0;
+            createdCount = 0;
+            updatedCount = 0;
+            updateStats();
+        }
+
+        // Auto-connect on page load (optional)
+        // window.onload = connect;
+    </script>
+</body>
+</html>

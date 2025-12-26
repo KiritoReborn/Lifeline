@@ -7,6 +7,7 @@ import com.lifeline.openicu.dto.NearbyHospitalRequest;
 import com.lifeline.openicu.dto.NearbyHospitalResponse;
 import com.lifeline.openicu.entity.Hospital;
 import com.lifeline.openicu.exception.HospitalNotFoundException;
+import com.lifeline.openicu.realtime.hospital.HospitalEventPublisher;
 import com.lifeline.openicu.repository.HospitalRepository;
 import com.lifeline.openicu.specification.HospitalSpecification;
 import org.springframework.data.domain.Page;
@@ -28,14 +29,21 @@ import java.util.stream.Collectors;
 public class HospitalService {
 
     private final HospitalRepository hospitalRepository;
+    private final HospitalEventPublisher eventPublisher;
 
-    public HospitalService(HospitalRepository hospitalRepository) {
+    public HospitalService(HospitalRepository hospitalRepository,
+                          HospitalEventPublisher eventPublisher) {
         this.hospitalRepository = hospitalRepository;
+        this.eventPublisher = eventPublisher;
     }
 
     public HospitalResponseDTO createHospital(HospitalCreateDTO createDTO) {
         Hospital hospital = convertToEntity(createDTO);
         Hospital savedHospital = hospitalRepository.save(hospital);
+        
+        // Publish hospital created event for WebSocket broadcast
+        eventPublisher.publishHospitalCreated(savedHospital);
+        
         return convertToDTO(savedHospital);
     }
 
@@ -65,6 +73,10 @@ public class HospitalService {
         
         updateEntityFromDTO(hospital, updateDTO);
         Hospital updatedHospital = hospitalRepository.save(hospital);
+        
+        // Publish hospital updated event for WebSocket broadcast
+        eventPublisher.publishHospitalUpdated(updatedHospital);
+        
         return convertToDTO(updatedHospital);
     }
 
