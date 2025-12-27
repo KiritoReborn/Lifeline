@@ -93,7 +93,8 @@ public class AmbulanceRoutingService {
                         hospital.getLatitude(), hospital.getLongitude());
             } else {
                 // Fallback: assign high distance for hospitals without coordinates
-                // This ensures they're considered but ranked lower than hospitals with coordinates
+                // This ensures they're considered but ranked lower than hospitals with
+                // coordinates
                 distance = 9999.0; // High distance to prioritize hospitals with coordinates
             }
 
