@@ -15,25 +15,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/beds")
+@RequestMapping("/api/beds")
 public class BedController {
-    
+
     private final BedService bedService;
-    
+
     public BedController(BedService bedService) {
         this.bedService = bedService;
     }
-    
+
     @PostMapping
     public ResponseEntity<BedResponseDTO> createBed(@RequestBody BedCreateDTO bedCreateDTO) {
         Bed bed = bedService.createBed(
-            bedCreateDTO.getHospitalId(),
-            bedCreateDTO.getBedNumber(),
-            bedCreateDTO.getBedType()
-        );
+                bedCreateDTO.getHospitalId(),
+                bedCreateDTO.getBedNumber(),
+                bedCreateDTO.getBedType());
         return new ResponseEntity<>(new BedResponseDTO(bed), HttpStatus.CREATED);
     }
-    
+
     @PutMapping("/{bedId}/status")
     public ResponseEntity<BedResponseDTO> updateBedStatus(
             @PathVariable Long bedId,
@@ -41,7 +40,7 @@ public class BedController {
         Bed bed = bedService.updateBedStatus(bedId, statusUpdateDTO.getBedStatus());
         return ResponseEntity.ok(new BedResponseDTO(bed));
     }
-    
+
     @GetMapping("/available")
     public ResponseEntity<List<BedResponseDTO>> getAvailableBeds(
             @RequestParam Long hospitalId,
@@ -52,7 +51,7 @@ public class BedController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(response);
     }
-    
+
     @GetMapping("/available/count")
     public ResponseEntity<BedCountResponseDTO> getAvailableBedCount(
             @RequestParam Long hospitalId,

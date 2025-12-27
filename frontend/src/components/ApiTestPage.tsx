@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { hospitalApi, bedApi, ambulanceApi, BedType, BedStatus } from '../api';
-import type { HospitalCreateDTO, NearbyHospitalRequest, AmbulanceRequestDTO, BedCreateDTO, BedStatusUpdateDTO } from '../api';
+import type { HospitalCreateDTO, AmbulanceRequestDTO, BedCreateDTO, BedStatusUpdateDTO } from '../api';
 
 export default function ApiTestPage() {
   const [results, setResults] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [locationStatus, setLocationStatus] = useState<string>('');
 
   const handleApiCall = async (apiCall: () => Promise<any>, description: string) => {
     try {
@@ -24,7 +25,7 @@ export default function ApiTestPage() {
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold text-white mb-6">API Endpoint Tester</h1>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         {/* Hospital Endpoints */}
         <div className="bg-gray-900 rounded-lg p-4">
@@ -74,20 +75,6 @@ export default function ApiTestPage() {
               disabled={loading}
             >
               Create Hospital
-            </button>
-            <button
-              onClick={() => {
-                const request: NearbyHospitalRequest = {
-                  latitude: 12.9716,
-                  longitude: 77.5946,
-                  radiusKm: 25.0,
-                };
-                handleApiCall(() => hospitalApi.findNearbyHospitals(request, { page: 0, size: 5 }), 'Find Nearby Hospitals');
-              }}
-              className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              disabled={loading}
-            >
-              Find Nearby
             </button>
           </div>
         </div>
@@ -143,20 +130,41 @@ export default function ApiTestPage() {
         <div className="bg-gray-900 rounded-lg p-4">
           <h2 className="text-xl font-semibold text-white mb-4">🚑 Ambulance APIs</h2>
           <div className="space-y-2">
+            {locationStatus && (
+              <p className="text-sm text-gray-400 mb-2">{locationStatus}</p>
+            )}
             <button
               onClick={() => {
-                const request: AmbulanceRequestDTO = {
-                  ambulanceId: 'AMB-TEST-001',
-                  latitude: 12.9716,
-                  longitude: 77.5946,
-                  requiredBedType: 'ICU',
-                };
-                handleApiCall(() => ambulanceApi.findNearestHospital(request), 'Find Nearest Hospital');
+                if (!navigator.geolocation) {
+                  setError('Geolocation is not supported by your browser');
+                  return;
+                }
+                setLocationStatus('📍 Getting your location...');
+                setLoading(true);
+                navigator.geolocation.getCurrentPosition(
+                  (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setLocationStatus(`📍 Location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+                    const request: AmbulanceRequestDTO = {
+                      ambulanceId: 'AMB-TEST-001',
+                      latitude,
+                      longitude,
+                      requiredBedType: 'ICU',
+                    };
+                    handleApiCall(() => ambulanceApi.findNearestHospital(request), `Find Nearest Hospital (from ${latitude.toFixed(4)}, ${longitude.toFixed(4)})`);
+                  },
+                  (err) => {
+                    setLoading(false);
+                    setLocationStatus('');
+                    setError(`Location error: ${err.message}`);
+                  },
+                  { enableHighAccuracy: true, timeout: 10000 }
+                );
               }}
               className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
               disabled={loading}
             >
-              Find Nearest
+              🚑 Find Nearest (Uses Your Location)
             </button>
           </div>
         </div>

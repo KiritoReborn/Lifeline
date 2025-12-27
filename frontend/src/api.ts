@@ -222,7 +222,7 @@ async function apiRequest<T>(
   options: RequestInit = {}
 ): Promise<T> {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   try {
     const response = await fetch(url, {
       ...options,
@@ -258,7 +258,7 @@ async function apiRequest<T>(
 
 function buildQueryString(params: Record<string, any>): string {
   const searchParams = new URLSearchParams();
-  
+
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
       if (Array.isArray(value)) {
@@ -268,7 +268,7 @@ function buildQueryString(params: Record<string, any>): string {
       }
     }
   });
-  
+
   const queryString = searchParams.toString();
   return queryString ? `?${queryString}` : '';
 }
@@ -397,7 +397,7 @@ export const bedApi = {
    * Create a new bed
    */
   createBed: async (data: BedCreateDTO): Promise<BedResponseDTO> => {
-    return apiRequest<BedResponseDTO>('/beds', {
+    return apiRequest<BedResponseDTO>('/api/beds', {
       method: 'POST',
       body: JSON.stringify(data),
     });
@@ -410,7 +410,7 @@ export const bedApi = {
     bedId: number,
     data: BedStatusUpdateDTO
   ): Promise<BedResponseDTO> => {
-    return apiRequest<BedResponseDTO>(`/beds/${bedId}/status`, {
+    return apiRequest<BedResponseDTO>(`/api/beds/${bedId}/status`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
@@ -428,7 +428,7 @@ export const bedApi = {
       bedType: bedType,
     };
     return apiRequest<BedResponseDTO[]>(
-      `/beds/available${buildQueryString(queryParams)}`
+      `/api/beds/available${buildQueryString(queryParams)}`
     );
   },
 
@@ -444,7 +444,7 @@ export const bedApi = {
       bedType: bedType,
     };
     return apiRequest<BedCountResponseDTO>(
-      `/beds/available/count${buildQueryString(queryParams)}`
+      `/api/beds/available/count${buildQueryString(queryParams)}`
     );
   },
 };
