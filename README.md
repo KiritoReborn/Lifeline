@@ -391,34 +391,27 @@ cd openicu
 
 ## 🛠️ Technology Stack
 
-### 🧠 Advanced AI & Intelligence
-- **Pollinations.ai** - Generative AI for real-time symptom triage and medical analysis
-- **Web Speech API** - Native browser speech recognition for hands-free SOS activation
-- **Heuristic Algorithms** - Local keyword matching for offline critical event detection
+### Backend
+- **Spring Boot 3.2.5** - Application framework
+- **Spring WebSocket** - WebSocket support
+- **Spring Data JPA** - Database access
+- **STOMP** - Messaging protocol
+- **SockJS** - WebSocket fallback
+- **H2/PostgreSQL** - Database
+- **Lombok** - Reduce boilerplate
+- **Maven** - Build tool
 
-### 🌐 Frontend & Experience
-- **React 18** - Component-based UI architecture
-- **Vite** - High-performance build tool
-- **Tailwind CSS** - Utility-first styling for responsive design
-- **Lucide React** - Modern, consistent icon system
-- **Leaflet & OpenStreetMap** - Interactive mapping visualization
+### Frontend (Test Client)
+- **HTML5/CSS3** - UI
+- **JavaScript (ES6)** - Logic
+- **SockJS Client** - WebSocket client
+- **STOMP.js** - STOMP protocol
 
-### 📡 Offline & Connectivity
-- **IndexedDB** - Persistent client-side storage for offline SOS queuing
-- **Web Bluetooth API** - Device discovery for ad-hoc mesh networking simulations
-- **Service Workers** - (Planned) Offline caching and PWA capabilities
-
-### ⚙️ Backend Core
-- **Spring Boot 3.2.5** - Production-grade Java framework
-- **Spring WebSocket** - Real-time bi-directional events (STOMP protocol)
-- **Spring Data JPA** - Robust object-relational mapping
-- **GraphHopper** - Fast routing engine for ambulance pathfinding
-- **H2 / PostgreSQL** - Flexible data persistence (In-memory dev / Postgres prod)
-
-### 🧪 Quality Assurance
-- **JUnit 5** - Comprehensive unit testing ecosystem
-- **Mockito** - Behavior verification
-- **Jest / Vitest** - Frontend testing framework
+### Testing
+- **JUnit 5** - Unit testing
+- **Mockito** - Mocking
+- **Spring Boot Test** - Integration testing
+- **jqwik** - Property-based testing
 
 ---
 
