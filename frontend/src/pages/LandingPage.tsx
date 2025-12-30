@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Building2, LogIn, Siren, ShieldCheck, Radio } from 'lucide-react';
+import { Building2, LogIn, Siren, ShieldCheck, Radio, Mic, Brain } from 'lucide-react';
 import heroImage from '../assets/landing-page-hero.png';
 
 const LandingPage = () => {
@@ -62,7 +62,7 @@ const LandingPage = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Hospital List Card */}
                         <div
                             onClick={() => navigate('/hospitals')}
@@ -101,33 +101,6 @@ const LandingPage = () => {
                             </div>
                         </div>
 
-                        {/* Emergency SOS Card */}
-                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
-                            <div className="absolute -bottom-12 -right-12">
-                                <div className="bg-red-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
-                            </div>
-
-                            <div className="flex flex-col h-full justify-between relative z-10">
-                                <div className="bg-red-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors mb-4">
-                                    <Siren className="w-7 h-7 text-red-600" />
-                                </div>
-                                <div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Emergency SOS</h3>
-                                    <p className="text-gray-500 text-sm leading-relaxed">
-                                        Instant route to nearest hospital.
-                                    </p>
-                                </div>
-
-                                <button
-                                    onClick={() => navigate('/sos')}
-                                    className="mt-4 w-full py-2.5 bg-red-600 text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
-                                >
-                                    <Siren className="w-4 h-4 animate-pulse" />
-                                    <span>ACTIVATE SOS</span>
-                                </button>
-                            </div>
-                        </div>
-
                         {/* Offline Mesh Card */}
                         <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
                             <div className="absolute -bottom-12 -right-12">
@@ -155,6 +128,86 @@ const LandingPage = () => {
                             </div>
                         </div>
 
+                        {/* Voice SOS Card */}
+                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
+                            <div className="absolute -bottom-12 -right-12">
+                                <div className="bg-orange-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
+                            </div>
+
+                            <div className="flex flex-col h-full justify-between relative z-10">
+                                <div className="bg-orange-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-orange-100 transition-colors mb-4">
+                                    <Mic className="w-7 h-7 text-orange-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Voice SOS</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        Hands-free emergency activation. Just say "Help".
+                                    </p>
+                                </div>
+
+                                <button
+                                    onClick={() => navigate('/voice-sos')}
+                                    className="mt-4 w-full py-2.5 bg-orange-600 text-white rounded-xl font-bold hover:bg-orange-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
+                                >
+                                    <Mic className="w-4 h-4" />
+                                    <span>OPEN VOICE SOS</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* AI Triage Card */}
+                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
+                            <div className="absolute -bottom-12 -right-12">
+                                <div className="bg-teal-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
+                            </div>
+
+                            <div className="flex flex-col h-full justify-between relative z-10">
+                                <div className="bg-teal-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-teal-100 transition-colors mb-4">
+                                    <Brain className="w-7 h-7 text-teal-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">AI Triage</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        Check symptoms and get instant emergency guidance.
+                                    </p>
+                                </div>
+
+                                <button
+                                    onClick={() => navigate('/triage')}
+                                    className="mt-4 w-full py-2.5 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
+                                >
+                                    <Brain className="w-4 h-4" />
+                                    <span>CHECK SYMPTOMS</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Emergency SOS Card */}
+                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
+                            <div className="absolute -bottom-12 -right-12">
+                                <div className="bg-red-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
+                            </div>
+
+                            <div className="flex flex-col h-full justify-between relative z-10">
+                                <div className="bg-red-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors mb-4">
+                                    <Siren className="w-7 h-7 text-red-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Emergency SOS</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        Instant route to nearest hospital.
+                                    </p>
+                                </div>
+
+                                <button
+                                    onClick={() => navigate('/sos')}
+                                    className="mt-4 w-full py-2.5 bg-red-600 text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
+                                >
+                                    <Siren className="w-4 h-4 animate-pulse" />
+                                    <span>ACTIVATE SOS</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

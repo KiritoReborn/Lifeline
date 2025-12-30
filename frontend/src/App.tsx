@@ -5,6 +5,8 @@ import HospitalLoginPage from './pages/HospitalLoginPage';
 import HospitalDashboardPage from './pages/HospitalDashboardPage';
 import EmergencySOSPage from './pages/EmergencySOSPage';
 import OfflineMeshDemo from './pages/OfflineMeshDemo';
+import VoiceSOSPage from './pages/VoiceSOSPage';
+import AITriagePage from './pages/AITriagePage';
 
 import PublicHospitalPage from './pages/PublicHospitalPage';
 
@@ -19,6 +21,8 @@ function App() {
         <Route path="/dashboard/:hospitalId" element={<HospitalDashboardPage />} />
         <Route path="/sos" element={<EmergencySOSPage />} />
         <Route path="/mesh" element={<OfflineMeshDemo />} />
+        <Route path="/voice-sos" element={<VoiceSOSPage />} />
+        <Route path="/triage" element={<AITriagePage />} />
       </Routes>
     </BrowserRouter>
   );
