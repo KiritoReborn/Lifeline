@@ -4,6 +4,7 @@ import HospitalListPage from './pages/HospitalListPage';
 import HospitalLoginPage from './pages/HospitalLoginPage';
 import HospitalDashboardPage from './pages/HospitalDashboardPage';
 import EmergencySOSPage from './pages/EmergencySOSPage';
+import OfflineMeshDemo from './pages/OfflineMeshDemo';
 
 import PublicHospitalPage from './pages/PublicHospitalPage';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<HospitalLoginPage />} />
         <Route path="/dashboard/:hospitalId" element={<HospitalDashboardPage />} />
         <Route path="/sos" element={<EmergencySOSPage />} />
+        <Route path="/mesh" element={<OfflineMeshDemo />} />
       </Routes>
     </BrowserRouter>
   );

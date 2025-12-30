@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Building2, LogIn, Siren, ShieldCheck } from 'lucide-react';
+import { Building2, LogIn, Siren, ShieldCheck, Radio } from 'lucide-react';
 import heroImage from '../assets/landing-page-hero.png';
 
 const LandingPage = () => {
@@ -62,22 +62,22 @@ const LandingPage = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {/* Hospital List Card */}
                         <div
                             onClick={() => navigate('/hospitals')}
-                            className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 flex flex-col justify-between h-[300px]"
+                            className="group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 flex flex-col justify-between h-[280px]"
                         >
-                            <div className="bg-blue-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-blue-100 transition-colors mb-6">
-                                <Building2 className="w-8 h-8 text-blue-600" />
+                            <div className="bg-blue-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-blue-100 transition-colors mb-4">
+                                <Building2 className="w-7 h-7 text-blue-600" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">Hospital List</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-2">Hospital List</h3>
                                 <p className="text-gray-500 text-sm leading-relaxed">
-                                    View all registered hospitals, check capacity, and find facilities near you.
+                                    View hospitals, check capacity, and find facilities near you.
                                 </p>
                             </div>
-                            <div className="mt-6 flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            <div className="mt-4 flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
                                 View Directory →
                             </div>
                         </div>
@@ -85,46 +85,72 @@ const LandingPage = () => {
                         {/* Hospital Login Card */}
                         <div
                             onClick={() => navigate('/login')}
-                            className="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 flex flex-col justify-between h-[300px]"
+                            className="group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 flex flex-col justify-between h-[280px]"
                         >
-                            <div className="bg-indigo-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-indigo-100 transition-colors mb-6">
-                                <LogIn className="w-8 h-8 text-indigo-600" />
+                            <div className="bg-indigo-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-indigo-100 transition-colors mb-4">
+                                <LogIn className="w-7 h-7 text-indigo-600" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">Hospital Login</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-2">Hospital Login</h3>
                                 <p className="text-gray-500 text-sm leading-relaxed">
-                                    Authorized access for hospital staff to manage beds and update status.
+                                    Staff access to manage beds and update status.
                                 </p>
                             </div>
-                            <div className="mt-6 flex items-center text-indigo-600 font-semibold group-hover:translate-x-2 transition-transform">
+                            <div className="mt-4 flex items-center text-indigo-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
                                 Access Portal →
                             </div>
                         </div>
 
-                        {/* Emergency SOS Card - Special Design */}
-                        <div className="relative group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[300px]">
-                            {/* SOS Button Overlay */}
+                        {/* Emergency SOS Card */}
+                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
                             <div className="absolute -bottom-12 -right-12">
-                                <div className="bg-red-500 w-48 h-48 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
+                                <div className="bg-red-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
                             </div>
 
                             <div className="flex flex-col h-full justify-between relative z-10">
-                                <div className="bg-red-50 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors mb-6">
-                                    <Siren className="w-8 h-8 text-red-600" />
+                                <div className="bg-red-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-red-100 transition-colors mb-4">
+                                    <Siren className="w-7 h-7 text-red-600" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">Emergency SOS</h3>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Emergency SOS</h3>
                                     <p className="text-gray-500 text-sm leading-relaxed">
-                                        Instant route to the nearest available hospital in case of emergency.
+                                        Instant route to nearest hospital.
                                     </p>
                                 </div>
 
                                 <button
                                     onClick={() => navigate('/sos')}
-                                    className="mt-6 w-full py-3 bg-red-600 text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-red-700 hover:shadow-red-300 transition-all active:scale-95 flex items-center justify-center space-x-2"
+                                    className="mt-4 w-full py-2.5 bg-red-600 text-white rounded-xl font-bold shadow-lg shadow-red-200 hover:bg-red-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
                                 >
-                                    <Siren className="w-5 h-5 animate-pulse" />
+                                    <Siren className="w-4 h-4 animate-pulse" />
                                     <span>ACTIVATE SOS</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Offline Mesh Card */}
+                        <div className="relative group bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-[280px]">
+                            <div className="absolute -bottom-12 -right-12">
+                                <div className="bg-purple-500 w-40 h-40 rounded-full opacity-5 group-hover:scale-150 transition-transform duration-500"></div>
+                            </div>
+
+                            <div className="flex flex-col h-full justify-between relative z-10">
+                                <div className="bg-purple-50 w-14 h-14 rounded-2xl flex items-center justify-center group-hover:bg-purple-100 transition-colors mb-4">
+                                    <Radio className="w-7 h-7 text-purple-600" />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-bold text-gray-900 mb-2">Offline Mesh</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">
+                                        Works without internet. Syncs when online.
+                                    </p>
+                                </div>
+
+                                <button
+                                    onClick={() => navigate('/mesh')}
+                                    className="mt-4 w-full py-2.5 bg-purple-600 text-white rounded-xl font-bold hover:bg-purple-700 transition-all active:scale-95 flex items-center justify-center space-x-2 text-sm"
+                                >
+                                    <Radio className="w-4 h-4" />
+                                    <span>OPEN MESH</span>
                                 </button>
                             </div>
                         </div>
