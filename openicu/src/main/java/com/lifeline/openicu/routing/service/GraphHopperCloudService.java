@@ -53,11 +53,7 @@ public class GraphHopperCloudService implements RoutingService {
             String url = UriComponentsBuilder.fromHttpUrl(GRAPHHOPPER_API_URL)
                     .queryParam("point", fromLat + "," + fromLon)
                     .queryParam("point", toLat + "," + toLon)
-                    // Use legacy parameters to force 'shortest' weighting
-                    // Profile 'car' encapsulates 'fastest', so we switch to vehicle+weighting
-                    .queryParam("vehicle", profile) // "car"
-                    .queryParam("weighting", "shortest")
-                    .queryParam("ch.disable", "true") // Disable CH to allow custom weighting
+                    .queryParam("profile", profile) // "car" for default fastest routing
                     .queryParam("locale", "en")
                     .queryParam("points_encoded", "true")
                     .queryParam("key", apiKey)

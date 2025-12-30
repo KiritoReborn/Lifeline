@@ -101,7 +101,20 @@ const PublicHospitalPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex items-center space-x-3">
+                        {/* Get Directions Button */}
+                        {hospital.latitude && hospital.longitude && (
+                            <button
+                                onClick={() => {
+                                    const url = `https://www.google.com/maps/dir/?api=1&destination=${hospital.latitude},${hospital.longitude}`;
+                                    window.open(url, '_blank');
+                                }}
+                                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-bold shadow-lg"
+                            >
+                                <MapPin className="w-4 h-4" />
+                                <span>Get Directions</span>
+                            </button>
+                        )}
                         <button
                             onClick={handleActionClick}
                             className="flex items-center space-x-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm font-bold shadow-lg"
@@ -198,7 +211,7 @@ const PublicHospitalPage = () => {
                                         <div className="flex justify-between items-start mb-2">
                                             <span className="font-bold text-lg text-gray-800">{bed.bedNumber}</span>
                                             <div className={`w-3 h-3 rounded-full ${bed.bedStatus === BedStatus.AVAILABLE ? 'bg-green-500' :
-                                                    bed.bedStatus === BedStatus.OCCUPIED ? 'bg-red-500' : 'bg-yellow-500'
+                                                bed.bedStatus === BedStatus.OCCUPIED ? 'bg-red-500' : 'bg-yellow-500'
                                                 }`} />
                                         </div>
 
