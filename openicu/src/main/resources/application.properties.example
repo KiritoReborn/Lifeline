@@ -1,0 +1,15 @@
+# OpenICU Application Configuration Example
+# Copy this file to application.properties and fill in your values
+
+# Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/openicu
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+
+# JPA Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+
+# GraphHopper API Configuration (Cloud)
+# Get your API key from: https://www.graphhopper.com/
+graphhopper.api.key=230f2a2f-9009-45d5-ac14-e0f2621c0386

@@ -1,0 +1,188 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.lifeline:openicu >------------------------
+[INFO] Building openicu 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ openicu >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ openicu ---
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ openicu ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ openicu ---
+[INFO] skip non existing resourceDirectory C:\Users\srikar\Downloads\Lifeline-feature-phase3-routing-maps\Lifeline-feature-phase3-routing-maps\openicu\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ openicu ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ openicu <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ openicu ---
+[INFO] Attaching agents: []
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2025-12-28T15:49:08.775+05:30  INFO 17668 --- [           main] c.lifeline.openicu.OpenicuApplication    : Starting OpenicuApplication using Java 17.0.17 with PID 17668 (C:\Users\srikar\Downloads\Lifeline-feature-phase3-routing-maps\Lifeline-feature-phase3-routing-maps\openicu\target\classes started by srikar in C:\Users\srikar\Downloads\Lifeline-feature-phase3-routing-maps\Lifeline-feature-phase3-routing-maps\openicu)
+2025-12-28T15:49:08.778+05:30  INFO 17668 --- [           main] c.lifeline.openicu.OpenicuApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-12-28T15:49:09.460+05:30  INFO 17668 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-28T15:49:09.542+05:30  INFO 17668 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 3 JPA repository interfaces.
+2025-12-28T15:49:10.115+05:30  INFO 17668 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-12-28T15:49:10.127+05:30  INFO 17668 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-28T15:49:10.129+05:30  INFO 17668 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2025-12-28T15:49:10.200+05:30  INFO 17668 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-12-28T15:49:10.201+05:30  INFO 17668 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1371 ms
+Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+2025-12-28T15:49:10.361+05:30  INFO 17668 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-28T15:49:10.547+05:30  INFO 17668 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:114084eb-e2d0-499a-925e-76cf4e9b6d47 user=SA
+2025-12-28T15:49:10.549+05:30  INFO 17668 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-28T15:49:10.597+05:30  INFO 17668 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-28T15:49:10.650+05:30  INFO 17668 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-12-28T15:49:10.684+05:30  INFO 17668 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-28T15:49:10.913+05:30  INFO 17668 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-28T15:49:11.965+05:30  INFO 17668 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-28T15:49:12.025+05:30  INFO 17668 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-28T15:49:12.274+05:30  INFO 17668 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-28T15:49:12.833+05:30  INFO 17668 --- [           main] c.l.o.r.service.GraphHopperCloudService  : GraphHopper service initialized. API key configured: false
+2025-12-28T15:49:12.949+05:30  WARN 17668 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-28T15:49:13.262+05:30  INFO 17668 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-12-28T15:49:13.264+05:30  INFO 17668 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2025-12-28T15:49:13.265+05:30  INFO 17668 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5698a866]]
+2025-12-28T15:49:13.265+05:30  INFO 17668 --- [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2025-12-28T15:49:13.272+05:30  INFO 17668 --- [           main] c.lifeline.openicu.OpenicuApplication    : Started OpenicuApplication in 4.863 seconds (process running for 5.197)
+Loading hospitals from CSV...
+Skipping malformed CSV line: Unterminated quoted field at end of CSV line. Beginning of lost text: [ Bhangar,West Bengal,South 24 Parganas,0,743502,03218  270909,9836536388,0,0,0,0,0,0,0,0,0,0,0,0,...]
+Skipping malformed CSV line: Unterminated quoted field at end of CSV line. Beginning of lost text: [ Bhangar,West Bengal,South 24 Parganas,0,743502,03218  270909,9836536388,0,0,0,0,0,0,0,0,0,0,0,0,...]
+2025-12-28T15:49:15.523+05:30  WARN 17668 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 22001, SQLState: 22001
+2025-12-28T15:49:15.523+05:30 ERROR 17668 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Value too long for column "ESTABLISHED_YEAR CHARACTER VARYING(100)": "U&' Bhaleri Road,Rajasthan,Churu,0,331001,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,... (131)"; SQL statement:
+insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default) [22001-224]
+Failed to load CSV: could not execute statement [Value too long for column "ESTABLISHED_YEAR CHARACTER VARYING(100)": "U&' Bhaleri Road,Rajasthan,Churu,0,331001,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,... (131)"; SQL statement:
+insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default) [22001-224]] [insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)]; SQL [insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)]
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [Value too long for column "ESTABLISHED_YEAR CHARACTER VARYING(100)": "U&' Bhaleri Road,Rajasthan,Churu,0,331001,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,... (131)"; SQL statement:
+insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default) [22001-224]] [insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)]; SQL [insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:293)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy2/jdk.proxy2.$Proxy126.saveAll(Unknown Source)
+	at com.lifeline.openicu.config.CsvDataLoader.run(CsvDataLoader.java:70)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:88)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:798)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:789)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:774)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:341)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at com.lifeline.openicu.OpenicuApplication.main(OpenicuApplication.java:10)
+Caused by: org.hibernate.exception.DataException: could not execute statement [Value too long for column "ESTABLISHED_YEAR CHARACTER VARYING(100)": "U&' Bhaleri Road,Rajasthan,Churu,0,331001,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,... (131)"; SQL statement:
+insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default) [22001-224]] [insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:55)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.id.insert.GetGeneratedKeysDelegate.performInsert(GetGeneratedKeysDelegate.java:107)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorPostInsertSingleTable.execute(MutationExecutorPostInsertSingleTable.java:100)
+	at org.hibernate.persister.entity.mutation.InsertCoordinator.doStaticInserts(InsertCoordinator.java:175)
+	at org.hibernate.persister.entity.mutation.InsertCoordinator.coordinateInsert(InsertCoordinator.java:113)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:2868)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:81)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:670)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:291)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:272)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:322)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:386)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:300)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:219)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:134)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:175)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:93)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:77)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:54)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:754)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:738)
+	at jdk.internal.reflect.GeneratedMethodAccessor23.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:319)
+	at jdk.proxy2/jdk.proxy2.$Proxy120.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:618)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.saveAll(SimpleJpaRepository.java:644)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:516)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:285)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:628)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:168)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	... 28 more
+Caused by: org.h2.jdbc.JdbcSQLDataException: Value too long for column "ESTABLISHED_YEAR CHARACTER VARYING(100)": "U&' Bhaleri Road,Rajasthan,Churu,0,331001,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,... (131)"; SQL statement:
+insert into hospitals (accreditation,address,ambulance_phone_no,bloodbank_phone_no,created_at,discipline_systems_of_medicine,district,district_id,email,emergency_num,emergency_services,empanelment_or_collaboration_with,established_year,facilities,helpline,hospital_care_type,hospital_category,hospital_fax,hospital_regis_number,hospital_secondary_email_id,latitude,location,longitude,miscellaneous_facilities,mobile_number,name,num_bed_for_eco_weaker_sec,num_mediconsultant_or_expert,number_doctor,number_private_wards,phone_number,pincode,specialties,state,state_id,subdistrict,subtown,tariff_range,telephone,tollfree,total_num_beds,town,updated_at,village,website,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default) [22001-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:518)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getValueTooLongException(DbException.java:334)
+	at org.h2.value.Value.getValueTooLongException(Value.java:2594)
+	at org.h2.value.Value.convertToVarchar(Value.java:1282)
+	at org.h2.value.Value.convertTo(Value.java:1138)
+	at org.h2.value.Value.convertForAssignTo(Value.java:1113)
+	at org.h2.table.Column.validateConvertUpdateSequence(Column.java:369)
+	at org.h2.table.Table.convertInsertRow(Table.java:936)
+	at org.h2.command.dml.Insert.insertRows(Insert.java:167)
+	at org.h2.command.dml.Insert.update(Insert.java:135)
+	at org.h2.command.CommandContainer.executeUpdateWithGeneratedKeys(CommandContainer.java:242)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:163)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
+	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	... 78 more

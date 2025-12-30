@@ -1,0 +1,30 @@
+# Node
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Kiro
+.kiro/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+graphhopper/
