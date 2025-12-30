@@ -31,7 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-.kiro/
+
 
 # Secrets
 src/main/resources/application.properties

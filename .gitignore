@@ -13,8 +13,7 @@ Thumbs.db
 *.iws
 *.ipr
 
-# Kiro
-.kiro/
+
 
 # Build outputs
 dist/
